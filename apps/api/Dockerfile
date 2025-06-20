@@ -2,6 +2,6 @@
 FROM node:18-alpine
 WORKDIR /app
 COPY . .
-RUN npm install -g pnpm && pnpm install && pnpm run build
-EXPOSE 3000
-CMD ["pnpm", "start"]
+RUN npm install -g pnpm && pnpm install
+EXPOSE 2000
+CMD ["pnpm", "run", "start:dev"]

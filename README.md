@@ -1,6 +1,6 @@
 # 🎙️ Chamber.fm
 
-A privacy-first, AI-powered voice inbox for the modern era. Send and receive secure, transcribed, and moderated audio messages — with real-time updates, Stripe payments, and GPU-accelerated AI.
+A privacy-first, AI-powered voice inbox for the modern era. Send and receive secure, transcribed, and moderated audio messages — with Stripe payments and GPU-accelerated AI.
 
 ---
 
@@ -11,10 +11,10 @@ A privacy-first, AI-powered voice inbox for the modern era. Send and receive sec
 | Frontend   | Next.js 14 (App Router), Tailwind CSS, Vercel              |
 | API        | NestJS (TypeScript), PostgreSQL (Cloud SQL), GCP Cloud Run |
 | AI         | FastAPI (Python), Whisper, GPT (OpenAI), GCP A10G          |
-| Realtime   | Elixir + Phoenix Channels, Fly.io or GCP VM                |
-| Storage    | Cloudflare R2 (voice blobs, signed URLs)                   |
-| Payments   | Stripe Checkout, Webhooks (NestJS)                         |
 | Notify     | Resend (Email), WebPush/OneSignal (future)                 |
+| Payments   | Stripe Checkout, Webhooks (NestJS)                         |
+| Storage    | Cloudflare R2 (voice blobs, signed URLs)                   |
+
 ✨ What It Does
 	•	Voice-to-text (Whisper): Converts audio to text with near-human accuracy
 	•	GPT moderation & summarization: Filters spam, abuse, and gives a 5-word summary headline
@@ -30,7 +30,6 @@ chamber-fm/
 │   ├── web/        # Next.js frontend (UI, PWA)
 │   ├── api/        # NestJS backend (credits, users, inbox, payments)
 │   ├── ai/         # FastAPI server for Whisper + GPT processing
-│   └── realtime/   # Elixir + Phoenix Channels (WebSocket, inbox updates)
 ├── packages/
 │   └── ui/         # Shared UI components (optional)
 ├── infra/          # Terraform/GCP/Cloudflare setup (optional)

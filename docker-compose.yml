@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   web:
     build: ./apps/web
@@ -6,6 +5,10 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+    command: pnpm run dev
     depends_on:
       - api
 
@@ -16,6 +19,10 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:password@db:5432/chamber
+    volumes:
+      - ./apps/api:/app
+      - /app/node_modules
+    command: pnpm run start:dev
     depends_on:
       - db
 
@@ -25,13 +32,10 @@ services:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
+    volumes:
+      - ./apps/ai:/app
+    command: uvicorn main:app --host 0.0.0.0 --reload --port 8000
 
-  realtime:
-    build: ./apps/realtime
-    ports:
-      - "4000:4000"
-    environment:
-      - MIX_ENV=dev
 
   db:
     image: postgres:15
@@ -50,6 +54,29 @@ services:
     restart: always
     ports:
       - "6379:6379"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@chamber.fm
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5051:80" # Changed to avoid conflict with Postgres
+    depends_on:
+      - db
+
+  studio:
+    build:
+      context: ./apps/api
+    command: npx prisma studio --port 5050
+    ports:
+      - "5050:5050"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:password@db:5432/chamber
+    depends_on:
+      - db
 
 volumes:
   pgdata:

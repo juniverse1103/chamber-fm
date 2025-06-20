@@ -43,3 +43,4 @@ Thumbs.db
 *.test.js
 *.spec.ts
 *.spec.js
+apps/ai/__pycache__/
