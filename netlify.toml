@@ -1,0 +1,6 @@
+# Netlify configuration placeholder for Chamber
+# This file is required for deployment compatibility. You can safely ignore or update for Netlify-specific settings.
+
+[build]
+  command = "pnpm install && pnpm build"
+  publish = "frontend/out"

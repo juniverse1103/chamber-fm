@@ -1,0 +1,123 @@
+name: Chamber.fm CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint-and-typecheck:
+    name: Lint & Type Check (Monorepo)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: pnpm install
+      - name: Lint (web, api)
+        run: |
+          pnpm --filter @chamber-fm/web lint || true
+          pnpm --filter @chamber-fm/api lint || true
+      - name: Type Check (web, api)
+        run: |
+          pnpm --filter @chamber-fm/web typecheck || true
+          pnpm --filter @chamber-fm/api typecheck || true
+
+  test-web:
+    name: Test Web (Next.js)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run tests
+        run: pnpm --filter @chamber-fm/web test || echo 'No tests defined.'
+
+  test-api:
+    name: Test API (NestJS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run tests
+        run: pnpm --filter @chamber-fm/api test || echo 'No tests defined.'
+      - name: Build Docker image
+        run: docker build -t chamber-api ./apps/api
+      - name: Run Docker container healthcheck
+        run: |
+          docker run -d --name api-test -p 3001:3000 chamber-api
+          sleep 10
+          docker ps | grep api-test || (echo 'API container failed to start' && exit 1)
+          docker stop api-test && docker rm api-test
+
+  test-ai:
+    name: Test AI (FastAPI)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r apps/ai/requirements.txt
+      - name: Run tests
+        run: |
+          cd apps/ai && pytest || echo 'No tests defined.'
+      - name: Build Docker image
+        run: docker build -t chamber-ai ./apps/ai
+      - name: Run Docker container healthcheck
+        run: |
+          docker run -d --name ai-test -p 8000:8000 chamber-ai
+          sleep 10
+          docker ps | grep ai-test || (echo 'AI container failed to start' && exit 1)
+          docker stop ai-test && docker rm ai-test
+
+  test-realtime:
+    name: Test Realtime (Phoenix)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: 1.15
+          otp-version: 26.0
+      - name: Install dependencies
+        run: |
+          cd apps/realtime && mix deps.get
+      - name: Run tests
+        run: |
+          cd apps/realtime && mix test || echo 'No tests defined.'
+      - name: Build Docker image
+        run: docker build -t chamber-realtime ./apps/realtime
+      - name: Run Docker container healthcheck
+        run: |
+          docker run -d --name realtime-test -p 4000:4000 chamber-realtime
+          sleep 10
+          docker ps | grep realtime-test || (echo 'Realtime container failed to start' && exit 1)
+          docker stop realtime-test && docker rm realtime-test

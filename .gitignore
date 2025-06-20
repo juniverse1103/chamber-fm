@@ -1,0 +1,45 @@
+# Node
+node_modules/
+.nyc_output/
+coverage/
+.env*
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# Monorepo
+pnpm-lock.yaml
+.idea/
+.vscode/
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+*.local
+.docker/
+.dockerignore
+
+# Misc
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js

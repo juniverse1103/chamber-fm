@@ -1,0 +1,7 @@
+{
+  "name": "@chamber-fm/ui",
+  "version": "0.1.0",
+  "main": "index.tsx",
+  "types": "index.d.ts",
+  "private": true
+}
