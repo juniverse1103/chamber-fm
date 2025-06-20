@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   getRoot(): string {
-    return 'Chamber.fm API is running!';
+    return 'Welcome to the Chamber.fm API server!';
   }
 }
