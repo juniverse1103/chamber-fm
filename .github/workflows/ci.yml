@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-and-typecheck:
-    name: Lint & Type Check (Monorepo)
+    name: Lint, Format & Type Check (Monorepo)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,12 +23,16 @@ jobs:
         run: pnpm install
       - name: Lint (web, api)
         run: |
-          pnpm --filter @chamber-fm/web lint || true
-          pnpm --filter @chamber-fm/api lint || true
+          pnpm --filter @chamber-fm/web lint
+          pnpm --filter @chamber-fm/api lint
+      - name: Format Check (web, api)
+        run: |
+          pnpm --filter @chamber-fm/web format
+          pnpm --filter @chamber-fm/api format
       - name: Type Check (web, api)
         run: |
-          pnpm --filter @chamber-fm/web typecheck || true
-          pnpm --filter @chamber-fm/api typecheck || true
+          pnpm --filter @chamber-fm/web typecheck
+          pnpm --filter @chamber-fm/api typecheck
 
   test-web:
     name: Test Web (Next.js)

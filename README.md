@@ -1,5 +1,8 @@
 # 🎙️ Chamber.fm
 
+[![Chamber.fm CI](https://github.com/juniverse1103/chamber-fm/actions/workflows/ci.yml/badge.svg)](https://github.com/juniverse1103/chamber-fm/actions/workflows/ci.yml)
+
+
 A privacy-first, AI-powered voice inbox for the modern era. Send and receive secure, transcribed, and moderated audio messages — with Stripe payments and GPU-accelerated AI.
 
 ---
@@ -157,3 +160,22 @@ Jun Son
 ⸻
 
 Ready to launch Chamber.fm 🚀
+
+---
+
+## 🛡️ Development Workflow & Code Quality
+
+- **Pre-commit hooks:** All staged files are automatically linted and formatted via Husky + lint-staged before every commit.
+- **Scripts:**
+  - `pnpm lint` — Lint all workspaces
+  - `pnpm format` — Check Prettier formatting
+  - `pnpm format:fix` — Auto-fix formatting
+  - `pnpm typecheck` — Type check all workspaces
+- **CI:** Every PR and push to `main`/`develop` runs lint, format, and typecheck in GitHub Actions. Builds fail if any checks fail.
+- **Ignore files:** `.eslintignore` and `.prettierignore` keep build artifacts and dependencies out of checks.
+
+**Contributing?**
+- Run `pnpm install` after cloning.
+- Use the provided scripts for code quality.
+- Commit as usual—pre-commit hooks will enforce standards automatically.
+- All code is checked again in CI for safety and consistency.
