@@ -12,7 +12,7 @@ services:
   api:
     build: ./apps/api
     ports:
-      - "3001:3000"
+      - "2000:2000"
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:password@db:5432/chamber
