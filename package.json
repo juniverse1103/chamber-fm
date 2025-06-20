@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": ["apps/*", "packages/*", "infra"],
   "scripts": {
-    "dev": "concurrently -k -r --names web,api,ai,realtime \"pnpm --filter @chamber-fm/web dev\" \"pnpm --filter @chamber-fm/api start:dev\" \"pnpm --filter @chamber-fm/ai dev || echo 'No AI dev script'\" \"pnpm --filter @chamber-fm/realtime dev || echo 'No Realtime dev script'\""
+    "dev": "pnpm -r run dev"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
