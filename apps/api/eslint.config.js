@@ -1,17 +1,22 @@
-module.exports = {
-  ignores: [
-    'node_modules',
-    'dist',
-    'build'
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
-  ],
-  env: {
-    node: true,
-    es2021: true
-  }
-};
+module.exports = [
+  {
+    ignores: [
+      'node_modules',
+      'dist',
+      'build'
+    ],
+    languageOptions: {
+      parser: require.resolve('@typescript-eslint/parser'),
+      ecmaVersion: 2021,
+      sourceType: 'module',
+    },
+    plugins: {
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+    },
+    rules: {
+      // Add any custom rules here if needed
+    },
+  },
+  require('eslint-plugin-eslint-recommended').configs.recommended,
+  require('@typescript-eslint/eslint-plugin').configs.recommended,
+];
