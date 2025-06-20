@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --primary: #2bb5ad; /* Key teal color */
+  --primary-light: #5ecec8; /* Lighter teal for hover effects */
+  --primary-dark: #0d9488; /* Darker teal for active states */
+
+  /* UI Colors */
+  --background: #f5f1e8; /* Warm Ivory background */
+  --foreground: #1f2937; /* Main text color */
+  --border: #e2e8f0; /* Light gray for borders */
+
+  /* Semantic Colors */
+  --accent: #2bb5ad; /* Same as primary for consistency */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#36E4DA] hover:bg-[#2BB5AD] text-white font-medium py-2 px-6 rounded-none border border-[#36E4DA] transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-[#36E4DA] text-[#36E4DA] hover:bg-[#F5FFFE] font-medium py-2 px-6 rounded-none transition-colors;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+}
