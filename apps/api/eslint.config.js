@@ -17,6 +17,5 @@ module.exports = [
       // Add any custom rules here if needed
     },
   },
-  require('eslint-plugin-eslint-recommended').configs.recommended,
   require('@typescript-eslint/eslint-plugin').configs.recommended,
 ];
