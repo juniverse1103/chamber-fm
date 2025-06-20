@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./*"],
       "@chamber-fm/ui": ["../../packages/ui"]
     },
     "incremental": true,
