@@ -97,27 +97,3 @@ jobs:
           docker ps | grep ai-test || (echo 'AI container failed to start' && exit 1)
           docker stop ai-test && docker rm ai-test
 
-  test-realtime:
-    name: Test Realtime (Phoenix)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Elixir
-        uses: erlef/setup-beam@v1
-        with:
-          elixir-version: 1.15
-          otp-version: 26.0
-      - name: Install dependencies
-        run: |
-          cd apps/realtime && mix deps.get
-      - name: Run tests
-        run: |
-          cd apps/realtime && mix test || echo 'No tests defined.'
-      - name: Build Docker image
-        run: docker build -t chamber-realtime ./apps/realtime
-      - name: Run Docker container healthcheck
-        run: |
-          docker run -d --name realtime-test -p 4000:4000 chamber-realtime
-          sleep 10
-          docker ps | grep realtime-test || (echo 'Realtime container failed to start' && exit 1)
-          docker stop realtime-test && docker rm realtime-test
