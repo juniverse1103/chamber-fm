@@ -15,7 +15,7 @@ module.exports = [
     },
     rules: {
       // Add any custom rules here if needed
+      // Example: '@typescript-eslint/no-unused-vars': 'warn',
     },
-  },
-  require('@typescript-eslint/eslint-plugin').configs.recommended,
+  }
 ];
