@@ -165,17 +165,74 @@ Ready to launch Chamber.fm 🚀
 
 ## 🛡️ Development Workflow & Code Quality
 
-- **Pre-commit hooks:** All staged files are automatically linted and formatted via Husky + lint-staged before every commit.
-- **Scripts:**
-  - `pnpm lint` — Lint all workspaces
-  - `pnpm format` — Check Prettier formatting
-  - `pnpm format:fix` — Auto-fix formatting
-  - `pnpm typecheck` — Type check all workspaces
-- **CI:** Every PR and push to `main`/`develop` runs lint, format, and typecheck in GitHub Actions. Builds fail if any checks fail.
-- **Ignore files:** `.eslintignore` and `.prettierignore` keep build artifacts and dependencies out of checks.
+This project uses a set of tools and practices to ensure code quality, consistency, and a smooth development experience.
 
-**Contributing?**
-- Run `pnpm install` after cloning.
-- Use the provided scripts for code quality.
-- Commit as usual—pre-commit hooks will enforce standards automatically.
+### Linting & Formatting
+
+- **ESLint**: We use ESLint for identifying and fixing problems in JavaScript and TypeScript code.
+    - The `apps/api` service uses the modern ESLint flat config (`eslint.config.js`), which includes ignore patterns directly.
+    - Other apps/packages may use `.eslintrc.json` and potentially `.eslintignore`.
+    - To run lint checks for a specific app (e.g., `api`):
+      ```bash
+      pnpm --filter api lint
+      ```
+    - To attempt to automatically fix lint issues for a specific app:
+      ```bash
+      pnpm --filter api lint:fix
+      ```
+    - To run lint checks for all workspaces:
+      ```bash
+      pnpm lint
+      ```
+- **Prettier**: Code formatting is handled by Prettier, integrated with ESLint.
+    - To check formatting for all workspaces:
+      ```bash
+      pnpm format
+      ```
+    - To automatically fix formatting:
+      ```bash
+      pnpm format:fix
+      ```
+- **Type Checking**: TypeScript is used for static type checking.
+    - To type check all workspaces:
+      ```bash
+      pnpm typecheck
+      ```
+
+### Commit Hooks (Husky & lint-staged)
+
+- **Husky**: Manages Git hooks to automate tasks.
+- **lint-staged**: Runs linters and formatters on staged files before committing.
+- **commitlint**: Enforces conventional commit messages.
+- **Pre-commit**: Before each commit, `lint-staged` will automatically:
+    - Run ESLint and Prettier on staged files.
+    - If any checks fail, the commit will be aborted.
+- **Commit Message Hook**: Before each commit message is finalized, `commitlint` will:
+    - Ensure the message adheres to the Conventional Commits specification.
+    - If the check fails, the commit will be aborted.
+
+### Continuous Integration (CI)
+
+- **GitHub Actions**: Our CI pipeline is defined in `.github/workflows/ci.yml`.
+- **Key Checks**: On every push and pull request (targeting `main` or `develop`), the CI pipeline runs:
+    - **Lint, Format & Type Check (Monorepo)**: Ensures code style, formatting, and type safety across the entire monorepo.
+    - **Test AI (FastAPI)**: Runs tests for the AI service.
+    - **Test API (NestJS)**: Runs tests for the main API service.
+    - **Test Web (Next.js)**: Runs tests for the web frontend.
+- **Branch Protection**:
+    - The `main` branch is protected. Changes must be made via Pull Request.
+    - All CI checks listed above must pass before a PR can be merged into `main`.
+
+### Branching Strategy
+
+- **`develop`**: Main development branch. New features and fixes are typically merged here first.
+- **`main`**: Production branch. Represents the latest stable release. Changes are merged from `develop` to `main` via Pull Requests after all checks pass.
+- **Feature Branches**: Create branches off `develop` for new features (e.g., `feat/my-new-feature` or `fix/bug-fix`).
+
+### Contributing Notes
+
+- Ensure you have `pnpm` installed (see "Getting Started").
+- After cloning, run `pnpm install`.
+- Use the provided scripts (e.g., `pnpm --filter <app> lint`, `pnpm format`) to maintain code quality.
+- Commit messages will be validated automatically.
 - All code is checked again in CI for safety and consistency.
