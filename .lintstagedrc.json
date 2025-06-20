@@ -1,0 +1,14 @@
+{
+  "apps/web/app/**/*.{js,jsx,ts,tsx}": [
+    "cd apps/web && next lint --fix"
+  ],
+  "apps/api/src/**/*.{js,jsx,ts,tsx}": [
+    "cd apps/api && eslint --fix"
+  ],
+  "apps/web/app/**/*.{json,css,md}": [
+    "pnpm format:fix"
+  ],
+  "apps/api/src/**/*.{json,css,md}": [
+    "pnpm format:fix"
+  ]
+}
