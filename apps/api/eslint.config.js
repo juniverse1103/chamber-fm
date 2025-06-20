@@ -6,7 +6,7 @@ module.exports = [
       'build'
     ],
     languageOptions: {
-      parser: require.resolve('@typescript-eslint/parser'),
+      parser: require('@typescript-eslint/parser'),
       ecmaVersion: 2021,
       sourceType: 'module',
     },
