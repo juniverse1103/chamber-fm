@@ -22,13 +22,13 @@ export function CompleteProfileForm() {
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\s/g, ''); // Prevent spaces
+    const value = e.target.value.replace(/\s/g, '').toLowerCase(); // Prevent spaces and force lowercase
     setUsername(value);
 
     if (value.length > 0 && value.length < 3) {
       setUsernameError('Username must be at least 3 characters.');
-    } else if (value.length > 0 && !/^[a-zA-Z0-9_]+$/.test(value)) {
-      setUsernameError('Only letters, numbers, and _ are allowed.');
+    } else if (value.length > 0 && !/^[a-z0-9_]+$/.test(value)) {
+      setUsernameError('Only lowercase letters, numbers, and _ are allowed.');
     } else if (value.toLowerCase() === 'admin') {
       setUsernameError('This username is already in use.');
     } else {
@@ -67,7 +67,7 @@ export function CompleteProfileForm() {
           <input
             id="username"
             type="text"
-            placeholder="3-20 letters, numbers, or _"
+            placeholder="3-20 lowercase letters, numbers, or _"
             value={username}
             onChange={handleUsernameChange}
             required
