@@ -5,7 +5,7 @@
 :root {
   /* Brand Colors */
   --primary: #0d9488; /* Key teal color */
-  --primary-light: #2bb5ad; /* Lighter teal for hover effects (formerly primary) */
+  --primary-light: #2bb5ad; /* Lighter teal for hover effects */
 
   /* UI Colors */
   --background: #f5f1e8; /* Warm Ivory background */
