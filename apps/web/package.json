@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "check": "pnpm lint && pnpm typecheck && pnpm format",
     "lint": "next lint",
     "lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
     "typecheck": "tsc --noEmit",
