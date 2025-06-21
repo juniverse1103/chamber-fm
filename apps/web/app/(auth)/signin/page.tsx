@@ -20,7 +20,7 @@ export default function SignInPage() {
           </Link>
 
           <h1 className="text-3xl font-bold text-primary font-montserrat">chamber.fm</h1>
-          <p className="mt-2 text-foreground/70">Sign in to continue to your voice inbox.</p>
+          <p className="mt-2 text-foreground/70">Sign in to create your AI voice inbox.</p>
         </div>
         <SignInForm />
 
