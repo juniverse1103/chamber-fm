@@ -90,7 +90,7 @@ export function CompleteProfileForm() {
         ) : (
           <p className="text-xs text-foreground/60">
             Your public profile will be at chamber.fm/
-            <span className="font-medium text-primary/90">{username || 'username'}</span>.
+            <span className="font-medium text-primary/90">{username || 'username'}</span>
           </p>
         )}
       </div>
@@ -125,7 +125,7 @@ export function CompleteProfileForm() {
             </button>
           )}
         </div>
-        <p className="text-xs text-foreground/60">This name will be shown on your public profile.</p>
+        <p className="text-xs text-foreground/60">This name will be shown on your public profile</p>
       </div>
       <Button type="submit" variant="cta" className="w-full" disabled={isLoading}>
         {isLoading ? 'Saving...' : 'Save and Continue'}

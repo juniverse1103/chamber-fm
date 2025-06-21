@@ -105,7 +105,7 @@ export default function SignInForm() {
           By continuing, you agree to our{" "}
           <Link href="/terms" className="underline hover:text-primary">
             Terms of Service
-          </Link>.
+          </Link>
         </p>
       </div>
     </form>
