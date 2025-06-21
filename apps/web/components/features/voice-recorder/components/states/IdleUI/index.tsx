@@ -19,7 +19,7 @@ const IdleUI: React.FC<IdleUIProps> = ({ handleRecord }) => {
       <div className="flex flex-col items-center justify-center flex-grow space-y-8 w-full">
         <button
           onClick={handleRecord}
-          className="group w-28 h-28 rounded-full bg-primary-dark text-white flex items-center justify-center transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-primary-dark"
+          className="group w-28 h-28 rounded-full bg-primary text-white flex items-center justify-center transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-primary"
           aria-label="Start recording"
         >
           <Mic size={36} className="group-hover:scale-110 transition-transform" />

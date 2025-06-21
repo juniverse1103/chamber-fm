@@ -4,9 +4,8 @@
 
 :root {
   /* Brand Colors */
-  --primary: #2bb5ad; /* Key teal color */
-  --primary-light: #5ecec8; /* Lighter teal for hover effects */
-  --primary-dark: #0d9488; /* Darker teal for active states */
+  --primary: #0d9488; /* Key teal color */
+  --primary-light: #2bb5ad; /* Lighter teal for hover effects (formerly primary) */
 
   /* UI Colors */
   --background: #f5f1e8; /* Warm Ivory background */
@@ -14,7 +13,7 @@
   --border: #e2e8f0; /* Light gray for borders */
 
   /* Semantic Colors */
-  --accent: #2bb5ad; /* Same as primary for consistency */
+  --accent: #0d9488; /* Same as new primary for consistency */
 }
 
 @layer base {

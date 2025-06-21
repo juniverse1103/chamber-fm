@@ -23,7 +23,7 @@ const VoiceRecorder: React.FC = () => {
   } = useVoiceRecorder();
 
   return (
-    <div className="w-full h-[500px] bg-[#D7F5F3] rounded-xl border border-primary-dark flex flex-col items-center relative overflow-hidden py-12 px-6">
+    <div className="w-full h-[500px] bg-[#D7F5F3] rounded-xl border border-primary flex flex-col items-center relative overflow-hidden py-12 px-6">
       <div className="relative w-full h-full max-w-md flex flex-col items-center z-10">
         <UIMachine
           recordingState={recordingState}

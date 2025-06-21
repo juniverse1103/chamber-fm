@@ -8,7 +8,7 @@ interface StatusHeaderProps {
 
 const StatusHeader: React.FC<StatusHeaderProps> = ({ children }) => {
   return (
-    <h2 className="text-primary-dark font-bold font-montserrat text-2xl mt-4">
+    <h2 className="text-primary font-bold font-montserrat text-2xl mt-4">
       {children}
     </h2>
   );

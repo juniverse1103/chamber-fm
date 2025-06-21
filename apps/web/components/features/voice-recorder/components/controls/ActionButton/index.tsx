@@ -33,9 +33,9 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   };
 
   const variantClasses = {
-    primary: 'bg-primary-dark text-white hover:scale-105 focus:ring-primary-dark',
+        primary: 'bg-primary text-white hover:scale-105 focus:ring-primary',
     secondary:
-      'bg-white/30 text-primary-dark hover:bg-white/40 focus:ring-primary-dark/30 focus:ring-offset-0',
+            'bg-white/30 text-primary hover:bg-white/40 focus:ring-primary/30 focus:ring-offset-0',
     danger: 'bg-[#FF6B6B] text-white hover:scale-105 focus:ring-[#FF6B6B]',
   };
 
@@ -47,7 +47,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
     >
       {isLoading ? (
-        <div className="w-4 h-4 border-2 border-primary-dark border-t-transparent rounded-full animate-spin" />
+        <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
       ) : (
         children
       )}

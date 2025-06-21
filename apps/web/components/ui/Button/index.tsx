@@ -18,8 +18,8 @@ export default function Button({
   const variantClasses = {
     primary: 'bg-primary hover:bg-primary-light text-white font-medium py-2 px-6 rounded-md border border-primary transition-colors font-montserrat',
     secondary: 'bg-white border border-primary text-primary hover:bg-primary/5 font-medium py-2 px-6 rounded-md transition-colors font-montserrat',
-    cta: 'bg-primary-dark hover:bg-primary text-white font-medium py-2 px-6 rounded-md border border-primary-dark transition-colors font-montserrat',
-    thin: 'bg-white hover:bg-[#D7F5F3] text-primary-dark border border-primary font-medium py-2 px-6 rounded-md transition-colors font-montserrat',
+    cta: 'bg-primary hover:bg-primary-light text-white font-medium py-2 px-6 rounded-md border border-primary transition-colors font-montserrat',
+    thin: 'bg-white hover:bg-[#D7F5F3] text-primary border border-primary font-medium py-2 px-6 rounded-md transition-colors font-montserrat',
   };
   
   return (

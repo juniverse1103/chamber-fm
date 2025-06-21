@@ -10,12 +10,12 @@ export default function Header() {
   
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-border">
-      <div className="container-custom py-2">
+      <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center font-montserrat space-x-2">
+          <Link href="/" className="flex items-center font-montserrat space-x-4">
             <Image src="/logo.svg" alt="Chamber.fm Logo" width={32} height={32} priority />
-            <span className="text-xl font-bold text-primary-dark">chamber.fm</span>
+            <span className="text-xl font-bold text-primary">chamber.fm</span>
           </Link>
           
           {/* Desktop Navigation */}
