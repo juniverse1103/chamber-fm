@@ -36,7 +36,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         primary: 'bg-primary text-white hover:scale-105 focus:ring-primary',
     secondary:
             'bg-white/30 text-primary hover:bg-white/40 focus:ring-primary/30 focus:ring-offset-0',
-    danger: 'bg-[#FF6B6B] text-white hover:scale-105 focus:ring-[#FF6B6B]',
+    danger: 'bg-danger text-white hover:scale-105 focus:ring-danger',
   };
 
   return (

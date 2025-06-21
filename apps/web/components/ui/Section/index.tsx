@@ -22,13 +22,13 @@ export default function Section({
       case 'white':
         return 'bg-white';
       case 'light':
-        return 'bg-[#F5FFFE]';
+        return 'bg-primary-bg';
       case 'dark':
-        return 'bg-[#2BB5AD] text-white';
+        return 'bg-primary-light text-white';
       case 'primary':
-        return 'bg-[#36E4DA] text-foreground';
+        return 'bg-primary-bright text-foreground';
       case 'bordered':
-        return 'bg-white border-t border-b border-[#E2E8F0]';
+        return 'bg-white border-t border-b border-border';
       case 'theme':
         return 'bg-background';
       default:
