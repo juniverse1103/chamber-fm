@@ -18,27 +18,27 @@ export default function Header() {
             <span className="text-xl font-bold text-primary">chamber.fm</span>
           </Link>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8 font-montserrat">
-            <Link href="#features" className="text-foreground/80 hover:text-primary transition-colors">
-              Features
-            </Link>
-            <Link href="#how-it-works" className="text-foreground/80 hover:text-primary transition-colors">
-              How It Works
-            </Link>
-            <Link href="#use-cases" className="text-foreground/80 hover:text-primary transition-colors">
-              Use Cases
-            </Link>
-            <Link href="#" className="text-foreground/80 hover:text-primary transition-colors">
-              Pricing
-            </Link>
-          </nav>
-          
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center font-montserrat">
-            <Link href="/signin">
-              <Button variant="cta">Sign In</Button>
-            </Link>
+          {/* Desktop Navigation & CTA */}
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8 font-montserrat">
+              <Link href="#features" className="text-foreground/80 hover:text-primary transition-colors">
+                Features
+              </Link>
+              <Link href="#how-it-works" className="text-foreground/80 hover:text-primary transition-colors">
+                How It Works
+              </Link>
+              <Link href="#use-cases" className="text-foreground/80 hover:text-primary transition-colors">
+                Use Cases
+              </Link>
+              <Link href="#" className="text-foreground/80 hover:text-primary transition-colors">
+                Pricing
+              </Link>
+            </nav>
+            <div className="flex items-center font-montserrat">
+              <Link href="/signin">
+                <Button variant="cta">Sign In</Button>
+              </Link>
+            </div>
           </div>
           
           {/* Mobile Menu Button */}

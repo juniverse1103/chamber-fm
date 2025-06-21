@@ -1,11 +1,11 @@
-import { SignInForm } from '@/components/auth/SignInForm';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SignInForm } from '@/components/auth/SignInForm';
 
 export default function SignInPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+    <div className="flex h-[100dvh] items-center justify-center bg-background p-4 overflow-hidden">
       <div className="w-full max-w-md space-y-4 rounded-xl border border-primary bg-white p-8">
         <div className="text-center">
           <Link href="/" className="inline-block">

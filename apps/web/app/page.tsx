@@ -1,4 +1,5 @@
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 import { Button, FeatureCard, IconBox, Section } from '@/components/ui';
 import { Header, Footer } from '@/components/layout';
 import { VoiceRecorder } from '@/components/features/voice-recorder';
@@ -19,7 +20,9 @@ export default function Home() {
               privacy-first design and GPU-accelerated AI.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button variant="cta">Get Started</Button>
+              <Link href="/signin">
+                <Button variant="cta">Get Started</Button>
+              </Link>
               <Button variant="thin">How It Works</Button>
             </div>
           </div>
@@ -221,9 +224,11 @@ export default function Home() {
             Join Chamber.fm today and experience the future of voice messaging.
           </p>
           <div className="pt-4">
-            <Button variant="cta" className="px-8 py-3 text-lg">
-              Get Started Now
-            </Button>
+            <Link href="/signin">
+              <Button variant="cta" className="px-8 py-3 text-lg">
+                Get Started Now
+              </Button>
+            </Link>
           </div>
         </div>
       </Section>
