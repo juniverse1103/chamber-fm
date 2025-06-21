@@ -49,7 +49,7 @@ export default function VerifyRequestClientPage() {
               Continue to Dashboard
             </Button>
           </Link>
-          <div className="text-center text-xs text-foreground/60 pt-2">
+          <div className="text-center text-xs text-foreground/60 py-2">
             <p>
               {resendCooldown > 0 ? 'New link has been sent.' : "Didn't receive the email?"}{' '}
               <button
