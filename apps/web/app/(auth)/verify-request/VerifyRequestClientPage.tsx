@@ -70,7 +70,7 @@ export default function VerifyRequestClientPage() {
         <div className="flex flex-col items-center space-y-2 pt-4">
           <Button
             variant="cta"
-            className="w-full"
+            className={`w-full ${!isVerified ? 'pointer-events-none' : ''}`}
             disabled={!isVerified}
             onClick={() => {
               if (isNewUser) {
