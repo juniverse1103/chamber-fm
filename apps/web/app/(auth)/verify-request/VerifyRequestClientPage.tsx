@@ -3,16 +3,18 @@
 import { MailCheck, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function VerifyRequestClientPage() {
-  const router = useRouter();
+  // Using window.location.href for navigation instead of router
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
   const [resendCooldown, setResendCooldown] = useState(0);
   const [isVerified, setIsVerified] = useState(false);
+  const dotFrames = ['', ' .', ' . .', ' . . .'];
+  const [dotIndex, setDotIndex] = useState(0);
 
   useEffect(() => {
     if (resendCooldown > 0) {
@@ -22,6 +24,14 @@ export default function VerifyRequestClientPage() {
       return () => clearTimeout(timerId);
     }
   }, [resendCooldown]);
+
+  useEffect(() => {
+    if (isVerified) return;
+    const intervalId = setInterval(() => {
+      setDotIndex((prevIndex) => (prevIndex + 1) % dotFrames.length);
+    }, 500);
+    return () => clearInterval(intervalId);
+  }, [isVerified, dotFrames.length]);
 
   const handleResendClick = () => {
     if (resendCooldown === 0) {
@@ -61,9 +71,19 @@ export default function VerifyRequestClientPage() {
             variant="cta"
             className="w-full"
             disabled={!isVerified}
-            onClick={() => router.push('/dashboard')}
+            onClick={() => {
+              // Use window.location for more reliable navigation in production
+              window.location.href = '/dashboard';
+            }}
           >
-            {isVerified ? 'Continue to Dashboard' : 'Waiting for verification...'}
+            {isVerified ? (
+              'Continue to Dashboard'
+            ) : (
+              <span className="flex items-center justify-center whitespace-nowrap">
+                <span className="text-center pl-6">Waiting for verification&nbsp;</span>
+                <span className="inline-block w-12 text-left">{dotFrames[dotIndex]}</span>
+              </span>
+            )}
           </Button>
           <div className="text-center text-xs text-foreground/60 py-2">
             <p>
