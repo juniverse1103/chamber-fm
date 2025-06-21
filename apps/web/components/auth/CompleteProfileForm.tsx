@@ -88,7 +88,10 @@ export function CompleteProfileForm() {
         {usernameError ? (
           <p className="text-xs text-danger">{usernameError}</p>
         ) : (
-          <p className="text-xs text-foreground/60">Your public profile will be at chamber.fm/username.</p>
+          <p className="text-xs text-foreground/60">
+            Your public profile will be at chamber.fm/
+            <span className="font-medium text-primary/90">{username || 'username'}</span>.
+          </p>
         )}
       </div>
       <div className="space-y-1">
