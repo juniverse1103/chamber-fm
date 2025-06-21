@@ -35,11 +35,10 @@ export default function Header() {
           </nav>
           
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4 font-montserrat">
-            <Link href="#" className="text-foreground hover:text-primary font-medium">
-              Log In
+          <div className="hidden md:flex items-center font-montserrat">
+            <Link href="/signin">
+              <Button variant="cta">Sign In</Button>
             </Link>
-            <Button variant="cta">Sign Up</Button>
           </div>
           
           {/* Mobile Menu Button */}
@@ -75,11 +74,12 @@ export default function Header() {
               <Link href="#" className="text-foreground/80 hover:text-primary transition-colors">
                 Pricing
               </Link>
-              <div className="flex flex-col space-y-2 pt-2">
-                <Link href="#" className="text-foreground hover:text-primary font-medium">
-                  Log In
+              <div className="pt-2">
+                <Link href="/signin">
+                  <Button variant="cta" className="w-full">
+                    Sign In
+                  </Button>
                 </Link>
-                <Button variant="cta">Sign Up</Button>
               </div>
             </nav>
           </div>
