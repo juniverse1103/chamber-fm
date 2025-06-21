@@ -3,10 +3,26 @@ import { authOptions } from '@/auth';
 import { SignOutButton } from '@/components/auth/SignOutButton';
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions);
+  let session = await getServerSession(authOptions);
+
+  // --- DEVELOPMENT MOCK ---
+  // If no session exists, create a mock session to allow UI development.
+  // To restore real authentication, remove this mock block.
+  if (!session) {
+    session = {
+      user: {
+        name: 'Test User',
+        email: 'user@example.com',
+      },
+      expires: '9999-12-31T23:59:59.999Z', // Mock expiry date
+    };
+  }
+  // ------------------------
 
   if (!session?.user) {
-    return null; // Should be handled by middleware, but as a fallback
+    // This should now only trigger if the session exists but the user object is missing.
+    // The middleware should ideally handle the redirect for unauthenticated users.
+    return <p>No user session found. Please sign in.</p>;
   }
 
   return (

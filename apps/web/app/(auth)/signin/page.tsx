@@ -1,7 +1,7 @@
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SignInForm } from '@/components/auth/SignInForm';
+import SignInForm from '@/components/auth/SignInForm';
 
 export default function SignInPage() {
   return (
@@ -20,7 +20,9 @@ export default function SignInPage() {
           </Link>
 
           <h1 className="text-3xl font-bold text-primary font-montserrat">chamber.fm</h1>
-          <p className="mt-2 text-foreground/70">Sign in to create your AI voice inbox.</p>
+          <p className="mt-2 text-foreground/70">
+            Enter your email below to receive a sign-in link.
+          </p>
         </div>
         <SignInForm />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './globals.css';
 import { Noto_Sans, Montserrat_Alternates } from 'next/font/google';
-import SessionProvider from '@/components/providers/SessionProvider';
+import MockSessionProvider from '@/components/providers/MockSessionProvider';
 
 const noto_sans = Noto_Sans({
   subsets: ['latin'],
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${noto_sans.variable} ${montserratAlternates.variable}`}>
       <body className="font-sans">
-        <SessionProvider>{children}</SessionProvider>
+        <MockSessionProvider>{children}</MockSessionProvider>
       </body>
     </html>
   );

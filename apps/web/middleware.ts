@@ -2,6 +2,14 @@ import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
+  // --- DEVELOPMENT MOCK ---
+  // The middleware is temporarily disabled to allow for UI development without a real
+  // authentication flow. It prevents the app from redirecting unauthenticated users
+  // from protected routes like the dashboard.
+  // To restore real authentication, uncomment the logic below.
+  return NextResponse.next();
+
+  /*
   const { nextUrl } = req;
 
   // Use getToken to check for a valid session. This is Edge-compatible.
@@ -26,6 +34,7 @@ export async function middleware(req: NextRequest) {
 
   // 3. Allow all other requests to proceed
   return NextResponse.next();
+  */
 }
 
 // The matcher ensures the middleware runs on all pages except for static assets and API routes.

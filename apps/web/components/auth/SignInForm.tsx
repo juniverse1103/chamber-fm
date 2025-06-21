@@ -1,39 +1,50 @@
 "use client";
 
-import React from "react";
-
-import { useState, useTransition } from "react";
-import { signIn } from "next-auth/react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
-import { Mail } from "lucide-react";
+import { Mail, Clipboard, X } from "lucide-react";
 import Link from "next/link";
 
-export function SignInForm() {
-  const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | null>(null);
+export default function SignInForm() {
+  const [isPending] = useState(false);
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  const TEST_EMAIL = "test@example.com";
+
+  const handlePasteTestEmail = () => {
+    setEmail(TEST_EMAIL);
+  };
+
+  const handleClearEmail = () => {
+    setEmail("");
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email") as string;
 
+    // --- DEVELOPMENT MOCK ---
+    router.push(`/verify-request?email=${encodeURIComponent(email)}`);
+    // ------------------------
+
+    /*
+    // REAL AUTHENTICATION LOGIC
     setError(null);
 
     startTransition(async () => {
       try {
         const result = await signIn("email", {
-          email,
-          redirect: false, // Do not redirect, we will handle it manually
+          email, // Use email from state
+          redirect: false,
         });
 
         if (result?.error) {
-          // This will be caught by the catch block
           throw new Error(result.error);
         }
 
         if (result?.ok) {
-          // On successful sign-in, redirect to the verify request page
-          window.location.href = "/verify-request";
+          router.push("/verify-request");
         } else {
           throw new Error("An unknown error occurred during sign-in.");
         }
@@ -41,24 +52,38 @@ export function SignInForm() {
         setError(err.message || "An error occurred.");
       }
     });
+    */
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <p className="text-sm text-red-500">{error}</p>}
+
       <div>
         <label htmlFor="email" className="sr-only">
           Email
         </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter your email"
-          required
-          disabled={isPending}
-          className="w-full rounded-md border border-border px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
-        />
+        <div className="relative flex items-center">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+            disabled={isPending}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-md border border-border px-4 py-2 pr-10 focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
+          />
+          <button
+            type="button"
+            onClick={email ? handleClearEmail : handlePasteTestEmail}
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-primary"
+            aria-label={email ? "Clear email" : "Paste test email"}
+            disabled={isPending}
+          >
+            {email ? <X className="h-5 w-5" /> : <Clipboard className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
       <Button
         type="submit"
@@ -77,11 +102,10 @@ export function SignInForm() {
 
       <div className="text-center text-xs text-foreground/60 pb-2">
         <p>
-          By continuing, you agree to our{' '}
+          By continuing, you agree to our{" "}
           <Link href="/terms" className="underline hover:text-primary">
             Terms of Service
-          </Link>
-          .
+          </Link>.
         </p>
       </div>
     </form>

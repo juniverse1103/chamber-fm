@@ -34,9 +34,11 @@ export default function Header() {
                 Pricing
               </Link>
             </nav>
+            {/* TODO: MOCK - This is temporarily changed to a Dashboard button for UI development. */}
+            {/* To restore, change href back to '/signin' and text to 'Sign In'. */}
             <div className="flex items-center font-montserrat">
-              <Link href="/signin">
-                <Button variant="cta">Sign In</Button>
+              <Link href="/dashboard">
+                <Button variant="cta">Dashboard</Button>
               </Link>
             </div>
           </div>
@@ -74,10 +76,11 @@ export default function Header() {
               <Link href="#" className="text-foreground/80 hover:text-primary transition-colors">
                 Pricing
               </Link>
+              {/* TODO: MOCK - This is temporarily changed to a Dashboard button for UI development. */}
               <div className="pt-2">
-                <Link href="/signin">
+                <Link href="/dashboard">
                   <Button variant="cta" className="w-full">
-                    Sign In
+                    Dashboard
                   </Button>
                 </Link>
               </div>
