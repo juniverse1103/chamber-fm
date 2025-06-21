@@ -31,6 +31,10 @@
     @apply bg-[#36E4DA] hover:bg-[#2BB5AD] text-white font-medium py-2 px-6 rounded-none border border-[#36E4DA] transition-colors;
   }
 
+  .text-danger {
+    color: var(--danger);
+  }
+
   .btn-secondary {
     @apply bg-white border border-[#36E4DA] text-[#36E4DA] hover:bg-[#F5FFFE] font-medium py-2 px-6 rounded-none transition-colors;
   }

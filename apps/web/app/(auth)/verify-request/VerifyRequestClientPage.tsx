@@ -10,6 +10,7 @@ export default function VerifyRequestClientPage() {
   // Using window.location.href for navigation instead of router
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
+  const isNewUser = email === 'new@example.com';
 
   const [resendCooldown, setResendCooldown] = useState(0);
   const [isVerified, setIsVerified] = useState(false);
@@ -72,12 +73,19 @@ export default function VerifyRequestClientPage() {
             className="w-full"
             disabled={!isVerified}
             onClick={() => {
-              // Use window.location for more reliable navigation in production
-              window.location.href = '/dashboard';
+              if (isNewUser) {
+                window.location.href = '/complete-profile';
+              } else {
+                window.location.href = '/dashboard';
+              }
             }}
           >
             {isVerified ? (
-              'Continue to Dashboard'
+              isNewUser ? (
+                'Complete Profile'
+              ) : (
+                'Continue to Dashboard'
+              )
             ) : (
               <span className="flex items-center justify-center whitespace-nowrap">
                 <span className="text-center pl-6">Waiting for verification&nbsp;</span>
