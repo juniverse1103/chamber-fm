@@ -3,18 +3,18 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
-import { Mic } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-border">
-      <div className="container-custom py-4">
+      <div className="container-custom py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 font-montserrat">
-            <Mic className="w-8 h-8 text-primary-dark" />
+          <Link href="/" className="flex items-center font-montserrat space-x-2">
+            <Image src="/logo.svg" alt="Chamber.fm Logo" width={32} height={32} priority />
             <span className="text-xl font-bold text-primary-dark">chamber.fm</span>
           </Link>
           
