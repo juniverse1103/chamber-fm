@@ -13,7 +13,8 @@
     "format": "pnpm -r format",
     "format:check": "pnpm -r format:check",
     "format:fix": "pnpm -r format:fix",
-    "dev": "pnpm -r run dev"
+    "dev": "pnpm -r run dev",
+    "build:web": "pnpm exec prisma generate --schema=apps/api/prisma/schema.prisma && pnpm --filter @chamber-fm/web build"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -27,5 +28,10 @@
     "@prisma/client": "^6.10.1",
     "@typescript-eslint/eslint-plugin": "^8.34.1",
     "prisma": "^6.10.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "^5.4.5"
+    }
   }
 }
