@@ -1,13 +1,11 @@
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button, FeatureCard, IconBox, Section } from '@/components/ui';
-import { Header, Footer } from '@/components/layout';
 import { VoiceRecorder } from '@/components/features/voice-recorder';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Header />
+    <>
       {/* Hero Section */}
       <Section background="theme" className="pt-32 pb-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -232,9 +230,6 @@ export default function Home() {
           </div>
         </div>
       </Section>
-
-      {/* Footer */}
-      <Footer />
-    </main>
+    </>
   );
 }
