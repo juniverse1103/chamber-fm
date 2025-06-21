@@ -49,7 +49,7 @@ const RecordedUI: React.FC<RecordedUIProps> = ({
         </div>
       </div>
 
-      <div className="w-full flex flex-col items-center space-y-4">
+      <div className="w-full flex flex-col items-center space-y-4 py-4">
         <Playbar 
           duration={duration} 
           playbackPosition={playbackPosition} 
@@ -69,7 +69,7 @@ const RecordedUI: React.FC<RecordedUIProps> = ({
         />
       </div>
 
-      <div className="w-full pt-8 flex flex-col items-center">
+      <div className="w-full pt-8 flex flex-col items-center text-center">
         <StatusGuide>{STATUS_TEXT.recorded.guide}</StatusGuide>
       </div>
     </div>

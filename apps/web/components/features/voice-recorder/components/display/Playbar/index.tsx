@@ -11,8 +11,8 @@ interface PlaybarProps {
 
 const Playbar: React.FC<PlaybarProps> = ({ duration, playbackPosition, onSeek }) => {
   return (
-    <div className="w-full flex flex-col items-center space-y-2">
-      <div className="w-full px-1 relative h-4">
+    <div className="w-full flex flex-col items-center space-y-4">
+      <div className="w-full px-1 relative h-3">
         <div className="w-full h-full bg-white/40 rounded-full overflow-hidden border border-primary">
           <div
             className="h-full bg-primary transition-all duration-100 ease-linear"
