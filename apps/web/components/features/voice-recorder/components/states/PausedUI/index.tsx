@@ -53,7 +53,7 @@ const PausedUI: React.FC<PausedUIProps> = ({
         />
       </div>
 
-      <div className="w-full pt-8 flex flex-col items-center">
+      <div className="w-full pt-8 flex flex-col items-center text-center">
         <StatusGuide>{STATUS_TEXT.paused.guide}</StatusGuide>
       </div>
     </div>

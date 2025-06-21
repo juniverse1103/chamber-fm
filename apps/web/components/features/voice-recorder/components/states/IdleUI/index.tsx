@@ -27,7 +27,7 @@ const IdleUI: React.FC<IdleUIProps> = ({ handleRecord }) => {
         <StatusDescription>{STATUS_TEXT.idle.description}</StatusDescription>
       </div>
 
-      <div className="w-full pt-8 flex flex-col items-center">
+      <div className="w-full pt-8 flex flex-col items-center text-center">
         <StatusGuide>{STATUS_TEXT.idle.guide}</StatusGuide>
       </div>
     </div>

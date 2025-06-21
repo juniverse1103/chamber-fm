@@ -53,7 +53,7 @@ const RecordingUI: React.FC<RecordingUIProps> = ({
         />
       </div>
 
-      <div className="w-full pt-8 flex flex-col items-center">
+      <div className="w-full pt-8 flex flex-col items-center text-center">
         <StatusGuide>{STATUS_TEXT.recording.guide}</StatusGuide>
       </div>
     </div>
