@@ -12,9 +12,10 @@ export default function SignInPage() {
             <Image
               src="/logo.svg"
               alt="Chamber.fm Logo"
-              width={64}
-              height={64}
+              width={48}
+              height={48}
               className="mx-auto mb-4"
+              priority
             />
           </Link>
 
