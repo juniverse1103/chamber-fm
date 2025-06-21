@@ -67,7 +67,7 @@ export function CompleteProfileForm() {
           <input
             id="username"
             type="text"
-            placeholder="3-20 lowercase letters, numbers, or _"
+            placeholder="3-20 letters, numbers, or _"
             value={username}
             onChange={handleUsernameChange}
             required
