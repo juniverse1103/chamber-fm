@@ -1,16 +1,18 @@
 'use client';
 
-import { MailCheck } from 'lucide-react';
+import { MailCheck, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function VerifyRequestClientPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
   const [resendCooldown, setResendCooldown] = useState(0);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     if (resendCooldown > 0) {
@@ -24,6 +26,7 @@ export default function VerifyRequestClientPage() {
   const handleResendClick = () => {
     if (resendCooldown === 0) {
       setResendCooldown(30);
+      setIsVerified(true); // Mock verification
       // In a real app, you'd trigger the resend email API call here
     }
   };
@@ -32,23 +35,36 @@ export default function VerifyRequestClientPage() {
     <div className="flex h-[100dvh] items-center justify-center bg-background p-4 overflow-hidden">
       <div className="w-full max-w-md space-y-4 rounded-xl border border-primary bg-white p-8">
         <div className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center">
-            <MailCheck className="h-12 w-12 text-primary" />
-          </div>
+          {isVerified ? (
+            <CheckCircle className="mx-auto mb-4 h-12 w-12 text-primary" />
+          ) : (
+            <MailCheck className="mx-auto mb-4 h-12 w-12 text-primary" />
+          )}
 
-          <h1 className="text-3xl font-bold text-primary font-montserrat">Check your email</h1>
+          <h1 className="text-3xl font-bold text-primary font-montserrat">
+            {isVerified ? 'Email Verified' : 'Check your email'}
+          </h1>
           <p className="mt-2 text-foreground/70">
-            A sign-in link has been sent to <br />
-            <span className="font-medium text-primary">{email || 'your email address'}</span>
+            {isVerified ? (
+              'Your email has been successfully verified.'
+            ) : (
+              <>
+                A sign-in link has been sent to <br />
+                <span className="font-medium text-primary">{email || 'your email address'}</span>
+              </>
+            )}
           </p>
         </div>
 
         <div className="flex flex-col items-center space-y-2 pt-4">
-          <Link href="/dashboard" className="w-full">
-            <Button variant="cta" className="w-full">
-              Continue to Dashboard
-            </Button>
-          </Link>
+          <Button
+            variant="cta"
+            className="w-full"
+            disabled={!isVerified}
+            onClick={() => router.push('/dashboard')}
+          >
+            {isVerified ? 'Continue to Dashboard' : 'Waiting for verification...'}
+          </Button>
           <div className="text-center text-xs text-foreground/60 py-2">
             <p>
               {resendCooldown > 0 ? 'New link has been sent.' : "Didn't receive the email?"}{' '}
